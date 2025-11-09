@@ -14,6 +14,10 @@ setTabs({
   tabsContainerClassname: ".tabs-effect-1"
 });
 
+setTabs({
+  tabsContainerClassname: ".tabs-effect-2"
+});
+
 function setTabs({ tabsContainerClassname }) {
   const tabsContainer = document.querySelector(tabsContainerClassname);
   const effectNumber = tabsContainer.getAttribute(DOM.tabsDataAttr);
@@ -77,7 +81,10 @@ function createMarker({ parentContainer, cssStyles = {} }) {
 
 function applyMarker({ currentMarkerElem, cssStyles = {} }) {
   Object.keys(cssStyles).forEach((styleName) => {
-    currentMarkerElem.style.setProperty(`--${styleName}`, cssStyles[styleName]);
+    currentMarkerElem?.style.setProperty(
+      `--${styleName}`,
+      cssStyles[styleName]
+    );
   });
 }
 

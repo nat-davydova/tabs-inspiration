@@ -143,3 +143,29 @@ body a {
 .tabs--1 .is-active {
   color: var(--active-color);
 }
+
+/* DEMO #2 STYLES */
+
+.tabs--2 {
+  --active-color: #ea580c;
+  --marker-height: 4px;
+}
+
+.tabs--2 {
+  position: relative;
+}
+
+.tabs--2 .tabs__list {
+  width: max-content;
+  margin: auto;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tabs--2 .tabs__btn {
+  padding: 0 25px 15px;
+}
+
+.tabs--2 .is-active {
+  color: var(--active-color);
+}
