@@ -36,7 +36,19 @@ function setEffect1({ containerElem }) {
   });
 }
 
+document.addEventListener("click", changeActiveTab);
+
 // ****** UTILS ******
+function changeActiveTab(event) {
+  const target = event.target;
+  const currentBtn = target.closest(`.${DOM.tabs_btn}`);
+  const tabsContainer = target.closest(`.${DOM.tabs}`);
+  const tabs = tabsContainer?.querySelectorAll(`.${DOM.tabs_btn}`);
+
+  tabs?.forEach((elem) => elem.classList.remove(`${DOM.is_active}`));
+  currentBtn?.classList.add(`${DOM.is_active}`);
+}
+
 function createMarker({ parentContainer, cssStyles = {} }) {
   const marker = document.createElement("div");
   marker.classList.add(`${DOM.marker}`);
