@@ -117,7 +117,6 @@ body a {
 .tabs--1 .tabs__list {
   width: max-content;
   margin: auto;
-  padding-bottom: 15px;
   justify-content: center;
   gap: 10px;
   border-bottom: 1px solid var(--border-color);
@@ -131,16 +130,16 @@ body a {
   display: block;
   width: var(--width);
   height: var(--marker-height);
+  transition: all 0.2s linear 0s;
   content: "";
   background: var(--active-color);
   border-radius: 5px;
 }
 
 .tabs--1 .tabs__btn {
-  padding: 0 25px;
+  padding: 0 25px 15px;
 }
 
 .tabs--1 .is-active {
   color: var(--active-color);
-  font-weight: 500;
 }

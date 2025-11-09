@@ -24,11 +24,23 @@ function setTabs({ tabsContainerClassname }) {
 }
 
 function setEffect1({ containerElem }) {
-  const activeElem = containerElem.querySelector(`.${DOM.is_active}`);
-  const { left, width } = getElementOffsetAndSize(activeElem);
+  const activeTabBtn = containerElem.querySelector(`.${DOM.is_active}`);
+  const { left, width } = getElementOffsetAndSize(activeTabBtn);
 
   createMarker({
     parentContainer: containerElem,
+    cssStyles: {
+      left: `${left}px`,
+      width: `${width}px`
+    }
+  });
+}
+
+function activateMarkerOnChangeTab1({ markerElem, activeTabBtn }) {
+  const { left, width } = getElementOffsetAndSize(activeTabBtn);
+
+  applyMarker({
+    currentMarkerElem: markerElem,
     cssStyles: {
       left: `${left}px`,
       width: `${width}px`
@@ -44,9 +56,12 @@ function changeActiveTab(event) {
   const currentBtn = target.closest(`.${DOM.tabs_btn}`);
   const tabsContainer = target.closest(`.${DOM.tabs}`);
   const tabs = tabsContainer?.querySelectorAll(`.${DOM.tabs_btn}`);
+  const marker = tabsContainer?.querySelector(`.${DOM.marker}`);
 
   tabs?.forEach((elem) => elem.classList.remove(`${DOM.is_active}`));
   currentBtn?.classList.add(`${DOM.is_active}`);
+
+  activateMarkerOnChangeTab1({ markerElem: marker, activeTabBtn: currentBtn });
 }
 
 function createMarker({ parentContainer, cssStyles = {} }) {
@@ -60,11 +75,17 @@ function createMarker({ parentContainer, cssStyles = {} }) {
   parentContainer.appendChild(marker);
 }
 
+function applyMarker({ currentMarkerElem, cssStyles = {} }) {
+  Object.keys(cssStyles).forEach((styleName) => {
+    currentMarkerElem.style.setProperty(`--${styleName}`, cssStyles[styleName]);
+  });
+}
+
 function getElementOffsetAndSize(elem) {
-  const left = elem.offsetLeft;
-  const top = elem.offsetTop;
-  const width = elem.clientWidth;
-  const height = elem.clientHeight;
+  const left = elem?.offsetLeft;
+  const top = elem?.offsetTop;
+  const width = elem?.clientWidth;
+  const height = elem?.clientHeight;
 
   return {
     left,
