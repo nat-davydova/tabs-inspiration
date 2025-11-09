@@ -126,8 +126,9 @@ body a {
 .tabs--1 .marker {
   position: absolute;
   bottom: calc(var(--marker-height) / 2 * -1);
-  left: 0;
+  left: var(--left);
   display: block;
+  width: var(--width);
   height: var(--marker-height);
   content: "";
   background: var(--active-color);

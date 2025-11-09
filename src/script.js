@@ -24,17 +24,41 @@ function setTabs({ tabsContainerClassname }) {
 }
 
 function setEffect1({ containerElem }) {
-  const activeElement = containerElem.querySelector(`.${DOM.is_active}`);
+  const activeElem = containerElem.querySelector(`.${DOM.is_active}`);
+  const { left } = getElementCoordsFromNonStaticParent(activeElem);
+  const width = activeElem.clientWidth;
 
-  createMarker({ parentContainer: containerElem });
+  console.log("____", width);
+
+  createMarker({
+    parentContainer: containerElem,
+    cssStyles: {
+      left: `${left}px`,
+      width: `${width}px`
+    }
+  });
 }
 
 // ****** UTILS ******
-function createMarker({ parentContainer }) {
+function createMarker({ parentContainer, cssStyles = {} }) {
   const marker = document.createElement("div");
   marker.classList.add(`${DOM.marker}`);
-  console.log("__", marker);
+
+  Object.keys(cssStyles).forEach((styleName) => {
+    marker.style.setProperty(`--${styleName}`, cssStyles[styleName]);
+  });
+
   parentContainer.appendChild(marker);
+}
+
+function getElementCoordsFromNonStaticParent(elem) {
+  const left = elem.offsetLeft;
+  const top = elem.offsetTop;
+
+  return {
+    left,
+    top
+  };
 }
 
 function getActiveElementFromTab(tabsClassname) {
