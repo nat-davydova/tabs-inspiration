@@ -106,7 +106,7 @@ body a {
 /* DEMO #1 STYLES */
 .tabs--1 {
   --border-color: #d4d4d4;
-  --marker-color: #a21caf;
+  --active-color: #a21caf;
   --marker-height: 4px;
 }
 
@@ -130,10 +130,15 @@ body a {
   display: block;
   height: var(--marker-height);
   content: "";
-  background: var(--marker-color);
+  background: var(--active-color);
   border-radius: 5px;
 }
 
 .tabs--1 .tabs__btn {
   padding: 0 25px;
+}
+
+.tabs--1 .is-active {
+  color: var(--active-color);
+  font-weight: 500;
 }
