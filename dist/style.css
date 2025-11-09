@@ -106,18 +106,34 @@ body a {
 /* DEMO #1 STYLES */
 .tabs--1 {
   --border-color: #d4d4d4;
+  --marker-color: #a21caf;
+  --marker-height: 4px;
+}
+
+.tabs--1 {
+  position: relative;
 }
 
 .tabs--1 .tabs__list {
-  position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   margin: auto;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   justify-content: center;
   gap: 10px;
   border-bottom: 1px solid var(--border-color);
+}
+
+.tabs--1 .marker {
+  position: absolute;
+  bottom: calc(var(--marker-height) / 2 * -1);
+  left: 0;
+  display: block;
+  height: var(--marker-height);
+  content: "";
+  background: var(--marker-color);
+  border-radius: 5px;
 }
 
 .tabs--1 .tabs__btn {
