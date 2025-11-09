@@ -25,10 +25,7 @@ function setTabs({ tabsContainerClassname }) {
 
 function setEffect1({ containerElem }) {
   const activeElem = containerElem.querySelector(`.${DOM.is_active}`);
-  const { left } = getElementCoordsFromNonStaticParent(activeElem);
-  const width = activeElem.clientWidth;
-
-  console.log("____", width);
+  const { left, width } = getElementOffsetAndSize(activeElem);
 
   createMarker({
     parentContainer: containerElem,
@@ -51,13 +48,17 @@ function createMarker({ parentContainer, cssStyles = {} }) {
   parentContainer.appendChild(marker);
 }
 
-function getElementCoordsFromNonStaticParent(elem) {
+function getElementOffsetAndSize(elem) {
   const left = elem.offsetLeft;
   const top = elem.offsetTop;
+  const width = elem.clientWidth;
+  const height = elem.clientHeight;
 
   return {
     left,
-    top
+    top,
+    width,
+    height
   };
 }
 
